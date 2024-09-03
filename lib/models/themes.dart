@@ -8,8 +8,10 @@ ThemeData lightMode = ThemeData(
     secondary: Color(0xff796878),
   ),
   textTheme: const TextTheme(
-    titleMedium: TextStyle(
+    titleLarge: TextStyle(
       color: Color(0xff4A4A4A),
+      fontFamily: 'Roboto',
+      fontSize: 24.0,
     ),
   ),
 );
@@ -18,14 +20,14 @@ ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   colorScheme: const ColorScheme.dark(
     surface: Color(0xff28282B),
-    primary: Color(0xfff5f5f5),
-    secondary: Colors.white,
+    primary: Colors.white,
+    secondary: Color(0xfff5f5f5),
   ),
   textTheme: const TextTheme(
     titleLarge: TextStyle(
       color: Color(0xfff5f5f5),
       fontFamily: 'Roboto',
-      fontSize: 24.0,
+      fontSize: 22.0,
     ),
   ),
 );

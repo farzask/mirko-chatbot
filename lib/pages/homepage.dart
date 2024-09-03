@@ -1,28 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:mirko/models/message.dart';
 import 'package:mirko/models/text.dart';
+import 'package:mirko/models/themenotifier.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
   final TextEditingController _controller = TextEditingController();
-  final List<Message> _message = [
-    Message(text: 'Hello', isUser: true),
-    Message(text: 'Hi, what\'s up?', isUser: false),
-    Message(text: 'Great, and you?', isUser: true),
-    Message(text: 'great', isUser: false),
-  ];
+  final List<Message> _message = [];
+
+  callGeminiModel() async {
+    try {
+      if (_controller.text.isNotEmpty) {
+        _message.add(Message(text: _controller.text, isUser: true));
+      }
+      final model = GenerativeModel(
+          model: 'gemini-pro', apiKey: dotenv.env['GOOGLE_API_KEY']!);
+      final prompt = _controller.text.trim();
+      final content = [Content.text(prompt)];
+      final response = await model.generateContent(content);
+      _controller.clear();
+      setState(
+        () {
+          _message.add(Message(text: response.text!, isUser: false));
+        },
+      );
+    } catch (e) {
+      print('Error : $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    ThemeMode currentTheme = ThemeMode.light;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
+        title: Align(
+          alignment: Alignment.centerRight,
+          child: GestureDetector(
+            child: (currentTheme == ThemeMode.dark)
+                ? Icon(
+                    Icons.light_mode,
+                    color: Theme.of(context).colorScheme.secondary,
+                  )
+                : Icon(
+                    Icons.dark_mode,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
+            onTap: () {
+              ref.read(themeProvider.notifier).toggleTheme();
+            },
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -97,7 +136,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const SizedBox(width: 6),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    callGeminiModel();
+                  },
                   icon: const Icon(Icons.send),
                 )
               ],

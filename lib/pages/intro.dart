@@ -12,7 +12,7 @@ class IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: const Color(0xfff5f5f5),
+      // backgroundColor:
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -20,7 +20,7 @@ class IntroPageState extends State<IntroPage> {
             Image.asset('assets/robot.png'),
             const SizedBox(height: 40),
             Text(
-              'Welcome to Mirko! \nYour personal assistant',
+              'Welcome to Mirko! \nYour personal AI assistant',
               style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
