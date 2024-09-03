@@ -5,14 +5,13 @@ class TextModel {
     fontFamily: 'Roboto',
     fontSize: 24.0,
     fontWeight: FontWeight.bold,
-    color: Color(0xff4A4A4A),
   );
 
   static TextStyle chat = const TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
-  );
+      fontFamily: 'Roboto',
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: Color(0xff4A4A4A));
 
   static TextStyle light = const TextStyle(
     fontFamily: 'Roboto',

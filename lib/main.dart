@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:mirko/pages/homepage.dart';
+import 'package:mirko/models/themes.dart';
 import 'package:mirko/pages/intro.dart';
 
 void main() {
@@ -13,9 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
+      theme: lightMode,
+      darkTheme: darkMode,
       home: const IntroPage(),
     );
   }

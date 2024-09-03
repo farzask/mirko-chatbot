@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mirko/pages/message.dart';
-import 'package:mirko/pages/text.dart';
+import 'package:mirko/models/message.dart';
+import 'package:mirko/models/text.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,9 +20,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xfff5f5f5),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        backgroundColor: const Color(0xfff5f5f5),
+        backgroundColor: Theme.of(context).colorScheme.surface,
       ),
       body: Column(
         children: [
@@ -58,11 +58,12 @@ class _HomePageState extends State<HomePage> {
                       child: Text(
                         message.text,
                         style: TextStyle(
-                          color:
-                              message.isUser ? Color(0xff4A4A4A) : Colors.white,
+                          color: message.isUser
+                              ? const Color(0xff4A4A4A)
+                              : Colors.white,
                           fontFamily: 'Roboto',
                           fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),
@@ -77,7 +78,11 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Expanded(
                   child: TextField(
+                    maxLines: null,
                     controller: _controller,
+                    keyboardType: TextInputType.multiline,
+                    style: TextModel.chat,
+                    cursorColor: const Color(0xff4A4A4A),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),

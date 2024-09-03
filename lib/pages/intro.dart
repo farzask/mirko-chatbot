@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mirko/pages/homepage.dart';
-import 'package:mirko/pages/text.dart';
 
 class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
@@ -13,7 +12,7 @@ class IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xfff5f5f5),
+      // backgroundColor: const Color(0xfff5f5f5),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -22,7 +21,7 @@ class IntroPageState extends State<IntroPage> {
             const SizedBox(height: 40),
             Text(
               'Welcome to Mirko! \nYour personal assistant',
-              style: TextModel.heading,
+              style: Theme.of(context).textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 40),
