@@ -12,17 +12,19 @@ class IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor:
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/robot.png'),
             const SizedBox(height: 40),
-            Text(
-              'Welcome to Mirko! \nYour personal AI assistant',
-              style: Theme.of(context).textTheme.titleLarge,
-              textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.only(left: 30.0, right: 30),
+              child: Text(
+                'Welcome to your personal AI assistant',
+                style: Theme.of(context).textTheme.titleLarge,
+                textAlign: TextAlign.center,
+              ),
             ),
             const SizedBox(height: 40),
             continueButton(context),
